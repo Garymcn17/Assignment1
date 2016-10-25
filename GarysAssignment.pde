@@ -1,9 +1,13 @@
 PShape s;
-float angle;
 float g = 0;
+float angle;
+float angleIncriment;
+float radius;
+float size = 40;
+
 void setup()
 {
-  size(1080,720);
+  size(1090,720);
   background(0);
   
   s = createShape();
@@ -15,18 +19,24 @@ void setup()
   s.vertex(175, 6);
   s.endShape();
   s.noStroke();
+  BackGround();
   
+  
+    angle = 1;
+    angleIncriment = 5/PI;
+    radius = 0;
 }
 
-/*void Load()
+void Load()
 {
-  rectMode(CORNER);
-  float c = cos(angle);
-  translate(width/2, height/2);
-  rotate(c);
-  rect(0, 0, 30, 30); 
+  fill(#2FF5A0);
+  translate(width / width + 75, height -75);
+  rotate(angle);
+  angle++;
+
+    triangle(0, size, size/2, 0, size, size);
 }
-*/
+
 void BackGround()
 {
   shape(s, 5, 0);
@@ -38,8 +48,8 @@ void BackGround()
 
 void draw() 
 {
-  //Load();
-  BackGround();
-  s.rotate(g + 0.1);
+  Load();
+  
+  //s.rotate(g + 0.1);
 }
    
