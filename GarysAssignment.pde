@@ -90,9 +90,25 @@ void Star()
   {
     float x = random(1090);
     float y = random(720);
-    fill(#2BD2FA,150);
+    fill(#2BD2FA,random(255));
+    if (x < 50 && y < 50 )
+    {
+      for( int j = 0; j< 440 ; j++)
+      {
+       fill(#FA8C1E);
+       ellipse(x, y, 5,5);
+       x = x +1;
+       y = y + 0.1;
+      }
+      noStroke();
+    }
+    else
+    {
     ellipse(x, y, 5,5);
+    }
   }
+  
+  
   
 }
 
@@ -108,11 +124,23 @@ void Menu()
   s.vertex(175, 0);
   s.endShape();
   
+  if (mouseX > 900 && mouseX < 1000 && mouseY > 400 && mouseY < 560) 
+  {
+      stroke(#FF190D); 
+      fill(0);
+  }
+  else 
+  {
+     stroke(0);
+     fill(0);
+  }
+  
   shape(s, 900, 400);
   shape(s, 900, 455);
   shape(s, 900, 510);
   
   
+    
 }
 
 void draw() 
