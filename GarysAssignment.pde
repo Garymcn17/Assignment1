@@ -13,19 +13,10 @@ void setup()
   size(1090,720);
   background(0);
   
-  s = createShape();
-  s.beginShape(RECT);
-  s.fill(#2FF5A0);
-  s.vertex(6, 6);
-  s.vertex(25, 25);
-  s.vertex(150, 25);
-  s.vertex(175, 6);
-  s.endShape();
+  Star();
   BackGround();
   
-    //angle = 1;
-   // angleIncriment = 5/PI;
-    //radius = 0;
+  
 }
 
 void Load()
@@ -40,6 +31,15 @@ void Load()
 
 void BackGround()
 {
+  s = createShape();
+  s.beginShape(RECT);
+  s.fill(#2FF5A0);
+  s.vertex(6, 6);
+  s.vertex(25, 25);
+  s.vertex(150, 25);
+  s.vertex(175, 6);
+  s.endShape();
+  
   shape(s, 5, 0);
   shape(s, 305, 0);
   shape(s, 605, 0);
@@ -75,12 +75,49 @@ void ON()
   {
     y ++;
   }
+  else
+  {
+    while( y != 150)
+    {
+      y --;
+    }
+  }
+}
+
+void Star()
+{
+  for(int i = 0 ; i<width/4; i++)
+  {
+    float x = random(1090);
+    float y = random(720);
+    fill(#2BD2FA,150);
+    ellipse(x, y, 5,5);
+  }
+  
+}
+
+void Menu()
+{
+  s = createShape();
+  s.beginShape(RECT);
+  s.fill(#2FF5A0);
+  s.vertex(0, 0);
+  s.vertex(0, 50);
+  s.vertex(100, 50);
+  s.vertex(100, 25);
+  s.vertex(175, 0);
+  s.endShape();
+  
+  shape(s, 900, 400);
+  shape(s, 900, 455);
+  shape(s, 900, 510);
+  
   
 }
 
 void draw() 
 {
-  
+  Menu();
   switchs();
   ON();
   Load();
