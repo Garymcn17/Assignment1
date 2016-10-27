@@ -15,12 +15,14 @@ void setup()
   
   Star();
   BackGround();
-  
+  fill(200);
+  rect(890,390, 195, 175, 5);
   
 }
 
 void Load()
 {
+  stroke(0);
   fill(#2FF5A0);
   translate(width / width + 75, height -75);
   rotate(angle);
@@ -34,17 +36,20 @@ void BackGround()
   s = createShape();
   s.beginShape(RECT);
   s.fill(#2FF5A0);
-  s.vertex(6, 6);
-  s.vertex(25, 25);
-  s.vertex(150, 25);
-  s.vertex(175, 6);
+  s.vertex(width / width + 6, height/height + 6 );
+  s.vertex(25, 40);
+  s.vertex(250, 40);
+  s.vertex(275, 6);
   s.endShape();
   
   shape(s, 5, 0);
-  shape(s, 305, 0);
-  shape(s, 605, 0);
-  shape(s, 905, 0);
-  fill(#2FF5A0);
+  shape(s, 405, 0);
+  shape(s, 805, 0);
+  fill(0);
+  textSize(32);
+  text("Terminal 1", 55, 35);
+  text("Terminal 2", 455, 35);
+  text("Terminal 3", 855, 35);
 }
 
 void switchs()
@@ -73,17 +78,14 @@ void ON()
   
   if(y != 275)
   {
-    y ++;
+    y ++;;
   }
-  else
+  else if( y < 37.5)
   {
-    while( y != 150)
-    {
-      y --;
-    }
+    y --;
   }
+  
 }
-
 void Star()
 {
   for(int i = 0 ; i<width/4; i++)
@@ -114,6 +116,7 @@ void Star()
 
 void Menu()
 {
+  /*
   s = createShape();
   s.beginShape(RECT);
   s.fill(#2FF5A0);
@@ -137,14 +140,28 @@ void Menu()
   
   shape(s, 900, 400);
   shape(s, 900, 455);
-  shape(s, 900, 510);
+  shape(s, 900, 510);*/
+}
+
+void keyPressed()
+{
+  if(key == DOWN)
+  {
+    fill(255,0,0);
+  }
+  else
+  {
+    fill(#2FF5A0);
+  }
+  rect(900,400, 100, 50,x);
+  rect(900,455, 125, 50,x*2);
+  rect(900,510, 150, 50,x*3);
   
-  
-    
 }
 
 void draw() 
 {
+  keyPressed();
   Menu();
   switchs();
   ON();
