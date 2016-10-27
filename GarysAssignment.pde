@@ -7,7 +7,7 @@ float size = 40;
 int value = 0;
 
 float x = 37.5;
-float y = 150;
+float y = 275;
 void setup()
 {
   size(1090,720);
@@ -15,8 +15,25 @@ void setup()
   
   Star();
   BackGround();
+  stroke(0);
+  fill(#2FF5A0);
+  rect(0,400, width, height);
+  triangle(0, height, width, 300, width, height);
+  triangle(width, height, width/width, 300, 0, height);
+  noFill();
+  fill(100);
+  triangle(5, height, width, 305, width, height);
+  triangle(width -5, height, width/width, 305, 0, height );
+  noFill();
   fill(200);
   rect(890,390, 195, 175, 5);
+  noFill();
+  
+  
+  textSize(20);
+  text("Engine 1", 40, 570);
+  textSize(20);
+  text("Engine 2", 290, 570);
   
 }
 
@@ -24,11 +41,23 @@ void Load()
 {
   stroke(0);
   fill(#2FF5A0);
+  pushMatrix();
   translate(width / width + 75, height -75);
   rotate(angle);
   angle++;
-
   triangle(0, size, size/2, 0, size, size);
+  popMatrix();
+  fill(0);
+  
+  stroke(0);
+  fill(#2FF5A0);
+  pushMatrix();
+  translate(width / width + 325, height -75);
+  rotate(angle);
+  angle += .1;
+  triangle(0, size, size/2, 0, size, size);
+  popMatrix();
+  fill(0);
 }
 
 void BackGround()
@@ -60,31 +89,31 @@ void switchs()
   rect(37.5,150, 75, 200);
 }
 
-void mouseClicked()
-{
-  if (value == 0) 
-  {
-    value = 255;
-  } 
-  else 
-  {
-    value = 0;
-  }
-}
 void ON()
 {
-  fill(255,0,0);
-  rect(x, y, 75, 75);
-  
-  if(y != 275)
+  if(keyPressed)
   {
-    y ++;;
+   if(key == CODED)
+   {
+    if (keyCode == UP)
+    { 
+      if (y >= 150)
+      {
+        y = y - 1;
+      }
+    }
+    else if (keyCode == DOWN)
+    {
+      if ( y <= 275)
+      {
+        y = y + 1;
+      }
+    }
+   }
+   
   }
-  else if( y < 37.5)
-  {
-    y --;
-  }
-  
+   fill(255,0,0);
+   rect(x, y, 75, 75);
 }
 void Star()
 {
@@ -114,61 +143,39 @@ void Star()
   
 }
 
-void Menu()
+int x1 = 500;
+int y2= 500;
+void Move()
 {
-  /*
-  s = createShape();
-  s.beginShape(RECT);
-  s.fill(#2FF5A0);
-  s.vertex(0, 0);
-  s.vertex(0, 50);
-  s.vertex(100, 50);
-  s.vertex(100, 25);
-  s.vertex(175, 0);
-  s.endShape();
-  
-  if (mouseX > 900 && mouseX < 1000 && mouseY > 400 && mouseY < 560) 
+  if(keyPressed)
   {
-      stroke(#FF190D); 
-      fill(0);
-  }
-  else 
-  {
-     stroke(0);
-     fill(0);
+   if(key == CODED)
+   {
+    if (keyCode == UP)
+    {
+      x1 = x1 + 1; 
+      y2 = y2 - 1;
+    }
+    if (keyCode == DOWN)
+    {
+      x1 = x1 - 1; 
+      y2 = y2 + 1;
+    }
+   }
+   
   }
   
-  shape(s, 900, 400);
-  shape(s, 900, 455);
-  shape(s, 900, 510);*/
-}
-
-void keyPressed()
-{
-  if(key == DOWN)
-  {
-    fill(255,0,0);
-  }
-  else
-  {
-    fill(#2FF5A0);
-  }
+  //triangle(0,height, x1,y2, x1, height);
   rect(900,400, 100, 50,x);
   rect(900,455, 125, 50,x*2);
   rect(900,510, 150, 50,x*3);
-  
 }
 
 void draw() 
 {
-  keyPressed();
-  Menu();
+  Move();
   switchs();
   ON();
   Load();
-  
-  
-  
-    
 }
    
