@@ -78,7 +78,7 @@ void BackGround()
   textSize(32);
   text("Terminal 1", 55, 35);
   text("Terminal 2", 455, 35);
-  text("Terminal 3", 855, 35);
+  //text("Terminal 3", 855, 35);
 }
 
 void switchs()
@@ -100,6 +100,12 @@ void ON()
       if (y >= 150)
       {
         y = y - 1;
+        if (y == 150)
+        {
+          fill(0);
+          textSize(32);
+          text("Terminal 3", 855, 35);
+        }
       }
     }
     else if (keyCode == DOWN)
@@ -166,6 +172,7 @@ void Move()
   }
   
   //triangle(0,height, x1,y2, x1, height);
+  fill(#2FF5A0);
   rect(900,400, 100, 50,x);
   rect(900,455, 125, 50,x*2);
   rect(900,510, 150, 50,x*3);
