@@ -54,10 +54,11 @@ void Load()
   pushMatrix();
   translate(width / width + 325, height -75);
   rotate(angle);
-  angle += .1;
+  angle += .01;
   triangle(0, size, size/2, 0, size, size);
   popMatrix();
   fill(0);
+ 
 }
 
 void BackGround()
@@ -173,9 +174,40 @@ void Move()
   
   //triangle(0,height, x1,y2, x1, height);
   fill(#2FF5A0);
+  if (mouseX > 900 && mouseX < 1000 && mouseY > 400 && mouseY < 450)
+  {
+    stroke(255,0,0);
+  }
+  else
+  {
+    stroke(0);
+  }
   rect(900,400, 100, 50,x);
+  if (mouseX > 900 && mouseX < 1125 && mouseY > 455 && mouseY < 505)
+  {
+    stroke(255,0,0);
+  }
+  else
+  {
+    stroke(0);
+  }
   rect(900,455, 125, 50,x*2);
+  
+  if (mouseX > 900 && mouseX < 1150 && mouseY > 510 && mouseY < 560)
+  {
+    stroke(255,0,0);
+  }
+  else
+  {
+    stroke(0);
+  }
   rect(900,510, 150, 50,x*3);
+  stroke(0);
+  fill(0);
+  textSize(20);
+  text("Gun", 930,430);
+  text("Fart", 930,485);
+  text("Missile", 930,540);
 }
 
 void draw() 
