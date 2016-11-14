@@ -1,3 +1,6 @@
+CrossHair Crosshair;
+Loading_Screen Loading1;
+boolean[] keys = new boolean[1000];
 PShape s;
 float g = 0;
 float angle;
@@ -8,33 +11,16 @@ int value = 0;
 
 float x = 37.5;
 float y = 275;
+float t =0,p =0;
 void setup()
 {
   size(1090,720);
-  background(0);
   
+  Crosshair = new CrossHair();
+  Loading1 = new Loading_Screen();
   Star();
-  BackGround();
-  stroke(0);
-  fill(#2FF5A0);
-  rect(0,400, width, height);
-  triangle(0, height, width, 300, width, height);
-  triangle(width, height, width/width, 300, 0, height);
-  noFill();
-  fill(100);
-  triangle(5, height, width, 305, width, height);
-  triangle(width -5, height, width/width, 305, 0, height );
-  noFill();
-  fill(200);
-  rect(890,390, 195, 175, 5);
-  noFill();
-  
-  
-  textSize(20);
-  text("Engine 1", 40, 570);
-  textSize(20);
-  text("Engine 2", 290, 570);
-  
+ 
+ 
 }
 
 void Load()
@@ -61,8 +47,24 @@ void Load()
  
 }
 
+void drawAstoroid(float t, float p) 
+{
+  fill(134, 1, 10);
+  beginShape();
+  vertex(t, p);
+  vertex(t + 30, p);
+  vertex(t + 40, p - 20);
+  vertex(t + 30, p - 30);
+  vertex(t, p - 40);
+  vertex(t - 20, p - 20);
+  endShape();
+}
+
 void BackGround()
 {
+  fill(0);
+  rect(0,0,width, height);
+  
   s = createShape();
   s.beginShape(RECT);
   s.fill(#2FF5A0);
@@ -80,6 +82,28 @@ void BackGround()
   text("Terminal 1", 55, 35);
   text("Terminal 2", 455, 35);
   //text("Terminal 3", 855, 35);
+  
+  pushMatrix();
+   stroke(0);
+  fill(#2FF5A0);
+  rect(0,400, width, height);
+  triangle(0, height, width, 300, width, height);
+  triangle(width, height, width/width, 300, 0, height);
+  noFill();
+  fill(100);
+  triangle(5, height, width, 305, width, height);
+  triangle(width -5, height, width/width, 305, 0, height );
+  noFill();
+  fill(200);
+  rect(890,390, 195, 175, 5);
+  noFill();
+  
+  
+  textSize(20);
+  text("Engine 1", 40, 570);
+  textSize(20);
+  text("Engine 2", 290, 570);
+  popMatrix();
 }
 
 void switchs()
@@ -212,9 +236,39 @@ void Move()
 
 void draw() 
 {
+  
+  
+  if(status == 1)
+  {
+  BackGround();
   Move();
   switchs();
   ON();
   Load();
+  Crosshair.drawCrosshair(mouseX, mouseY);
+  }
+  else
+  {
+   Loading1.Loading();
+  }
+}
+
+void keyPressed()
+{ 
+  keys[keyCode] = true;
+}
+ 
+void keyReleased()
+{
+  keys[keyCode] = false; 
+}
+
+boolean checkKey(int k)
+{
+  if (keys.length >= k) 
+  {
+    return keys[k] || keys[Character.toUpperCase(k)];  
+  }
+  return false;
 }
    
