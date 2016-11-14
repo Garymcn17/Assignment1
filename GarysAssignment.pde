@@ -247,7 +247,7 @@ void draw()
   Load();
   Crosshair.drawCrosshair(mouseX, mouseY);
   }
-  else
+  if(status == 0)
   {
    Loading1.Loading();
   }
