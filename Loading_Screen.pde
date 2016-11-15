@@ -1,7 +1,7 @@
 int status = 0;
 class Loading_Screen
 {
-  
+  float fillX;
   
   void Loading()
   {
@@ -12,11 +12,21 @@ class Loading_Screen
     
     fill(255);
     textAlign(LEFT);
-    text ("LOADING " + int((frameCount%301) / 3) + "%", 10, 670);
-    rect(10, 680, 204, 24);
+    textSize(20);
+    rect(10, 680, 205, 24);
     fill(255,0,0);
-    int fillX = ((frameCount%301) / 3 * 2);
-    rect(250, 140, fillX-200, 20);
+    
+    rect(215, 680, fillX-200, 24);
+    if(fillX < 202)
+    {
+      fillX = fillX + .5;
+      text ("LOADING " + int((frameCount%401) / 4) + "%", 10, 670);
+    }
+    else
+    {
+       fillX = 202;
+       text("LOADING 100" + "%", 10,670);
+    }
     popMatrix();
   }
     void Switch()
