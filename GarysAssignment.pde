@@ -236,7 +236,7 @@ void Move()
 
 void draw() 
 {
-  
+  Loading1.Switch();
   
   if(status == 1)
   {
