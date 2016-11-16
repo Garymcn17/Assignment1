@@ -23,29 +23,7 @@ void setup()
  
 }
 
-void Load()
-{
-  stroke(0);
-  fill(#2FF5A0);
-  pushMatrix();
-  translate(width / width + 75, height -75);
-  rotate(angle);
-  angle++;
-  triangle(0, size, size/2, 0, size, size);
-  popMatrix();
-  fill(0);
-  
-  stroke(0);
-  fill(#2FF5A0);
-  pushMatrix();
-  translate(width / width + 325, height -75);
-  rotate(angle);
-  angle += .01;
-  triangle(0, size, size/2, 0, size, size);
-  popMatrix();
-  fill(0);
- 
-}
+
 
 void drawAstoroid(float t, float p) 
 {
@@ -241,10 +219,10 @@ void draw()
   if(status == 1)
   {
   BackGround();
+  Loading1.Load();
   Move();
   switchs();
   ON();
-  Load();
   Crosshair.drawCrosshair(mouseX, mouseY);
   }
   if(status == 0)

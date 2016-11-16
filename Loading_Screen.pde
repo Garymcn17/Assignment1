@@ -47,6 +47,29 @@ class Loading_Screen
       }
     }
     
+    void Load()
+    {
+      stroke(0);
+      fill(#2FF5A0);
+      pushMatrix();
+      translate(width / width + 75, height -75);
+      rotate(angle);
+      angle+= .01;
+      triangle(0, size, size/2, 0, size, size);
+      popMatrix();
+      fill(0);
+      stroke(0);
+      fill(#2FF5A0);
+      pushMatrix();
+      translate(width / width + 325, height -75);
+      rotate(angle);
+      angle += .1;
+      triangle(0, size, size/2, 0, size, size);
+      popMatrix();
+      fill(0);
+     
+    }
+    
  
   
 }
