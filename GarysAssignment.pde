@@ -18,7 +18,7 @@ void setup()
   
   Crosshair = new CrossHair();
   Loading1 = new Loading_Screen();
-  Star();
+ 
  
  
 }
@@ -137,8 +137,6 @@ void Star()
       {
        fill(#FA8C1E);
        ellipse(x, y, 5,5);
-       x = x +1;
-       y = y + 0.1;
       }
       noStroke();
     }
@@ -218,6 +216,7 @@ void draw()
   
   if(status == 1)
   {
+   // drawAstoroid(t,p);
   BackGround();
   Loading1.Load();
   Move();
