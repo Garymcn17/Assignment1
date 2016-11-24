@@ -71,21 +71,25 @@ class Loading_Screen
     void Load()
     {
       stroke(0);
-      fill(#2FF5A0);
+      fill(0);
+      ellipse(width / width + 75, height -75, 40,40);
+      ellipse(width / width + 325, height -75, 40,40);
       pushMatrix();
+      fill(195,0,0);
       translate(width / width + 75, height -75);
       rotate(angle);
-      angle+= .01;
-      triangle(0, size, size/2, 0, size, size);
+      angle += .01F;
+      triangle(0, size -40, size/2, -40, size, size-40);
       popMatrix();
       fill(0);
       stroke(0);
-      fill(#2FF5A0);
+      fill(0);
       pushMatrix();
+       fill(195,0,0);
       translate(width / width + 325, height -75);
       rotate(angle);
-      angle += .1;
-      triangle(0, size, size/2, 0, size, size);
+      angle += .1F;
+      triangle(0, size -40, size/2, -40, size, size-40);
       popMatrix();
       fill(0);
      

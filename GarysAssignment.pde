@@ -1,4 +1,12 @@
+import processing.sound.*;
+SoundFile pew;
+SoundFile fart;
+SoundFile missile;
+ParticleSystem ps;
+PImage img;
+
 CrossHair Crosshair;
+Scan Scan;
 Loading_Screen Loading1;
 boolean[] keys = new boolean[1000];
 PShape s;
@@ -12,7 +20,11 @@ int condition = 0;
 float x = 37.5;
 float y = 275;
 float t =0,p =0;
-
+float z = 40;
+float z1 = 0;
+float b = 0;
+int sound = 0;
+int missileState =0;
 ArrayList <Bullet> bullets = new ArrayList <Bullet> ();
 PVector player, playerSpeed;
 float maxSpeed = 3;
@@ -20,11 +32,16 @@ float maxSpeed = 3;
 void setup()
 {
   size(1090,720);
-  
+  img = loadImage("maxresdefault.jpg");
+  ps = new ParticleSystem(new PVector(width/2, 50));
   Crosshair = new CrossHair();
   Loading1 = new Loading_Screen();
   player = new PVector(width/2, height/2 +145);
   playerSpeed = new PVector();
+  Scan = new Scan();
+  pew = new SoundFile(this, "Pew_Pew-DKnight556-1379997159.wav");
+  fart = new SoundFile(this, "fart-08.mp3");
+  missile = new SoundFile(this, "Bomb-SoundBible.com-891110113.mp3");
   noCursor();
   noStroke();
   smooth();
@@ -32,9 +49,12 @@ void setup()
 
 void BackGround()
 {
-  fill(0);
-  rect(0,0,width, height);
   
+  fill(0);
+  
+  rect(0,0,width, height);
+  image(img, 0, 0);
+  Scan.ShowScan();
   s = createShape();
   s.beginShape(RECT);
   s.fill(#2FF5A0);
@@ -55,6 +75,8 @@ void BackGround()
   {
   text("Terminal 3", 855, 35);
   }
+ 
+  
   
   pushMatrix();
    stroke(0);
@@ -71,12 +93,30 @@ void BackGround()
   rect(890,390, 195, 175, 5);
   noFill();
   
-  
+  fill(#2FF5A0);
+  rect(25,600, 350,90);
   textSize(20);
   text("Engine 1", 40, 570);
   textSize(20);
   text("Engine 2", 290, 570);
   popMatrix();
+  
+   fill(#2FF5A0);
+  textSize(20);
+  
+  text("Terminal 1 : Online", 25, 420);
+  text("Terminal 2 : Online", 25, 450);
+  if( condition == 1)
+  {
+    fill(255,0,0);
+    text("Terminal 3 : Online", 25, 480);
+  }
+  else
+  {
+    text("Terminal 3 : Offline", 25, 480);
+  }
+  
+  
 }
 
 void switchs()
@@ -109,11 +149,63 @@ void ON()
       if ( y <= 275)
       {
         y = y + 1;
+        if (y == 275)
+        {
+          condition = 0;
+        }
       }
     }
    }
    
+  if(key == 'f')
+  {
+    sound = 1;
   }
+  else
+  {
+    sound = 0;
+  }
+   
+  if(sound == 1)
+  {
+    fart.play();
+  }
+  
+  if(key =='m')
+  {
+    
+    missileState = 1;
+  }
+  else
+  {
+    missileState = 0;
+  }
+  
+  if(key == ' ')
+  {
+    
+    if (z < 250)
+    {
+      if ( b < 50)
+      {
+        stroke(255,0,0);
+        line(width/2,height/2-z, width/2,height/2- z1);
+        ellipse(width/2,height/2-z,b,b);
+        
+        b += .3;
+      }
+      else
+      {
+         ps.addParticle();
+         ps.run();
+         missile.play();
+      }
+    }
+    z ++;
+    z1 ++;
+   
+  }
+ }
    fill(255,0,0);
    rect(x, y, 75, 75);
 }
@@ -170,6 +262,8 @@ void Move()
   if (mouseX > 900 && mouseX < 1000 && mouseY > 400 && mouseY < 450)
   {
     stroke(255,0,0);
+    textSize(20);
+    text("Left Click to shoot", width/2, height-75);
   }
   else
   {
@@ -179,6 +273,8 @@ void Move()
   if (mouseX > 900 && mouseX < 1125 && mouseY > 455 && mouseY < 505)
   {
     stroke(255,0,0);
+    textSize(20);
+    text("Press f to gas the enemy", width/2, height -75);
   }
   else
   {
@@ -189,6 +285,8 @@ void Move()
   if (mouseX > 900 && mouseX < 1150 && mouseY > 510 && mouseY < 560)
   {
     stroke(255,0,0);
+    textSize(20);
+    text("Space to shoot missile", width/2, height -75);
   }
   else
   {
@@ -221,6 +319,7 @@ void shoot()
     dir.mult(maxSpeed*3);
     Bullet b = new Bullet(player, dir);
     bullets.add(b);
+    pew.play();
   }
  
   for (Bullet b : bullets) {
@@ -244,6 +343,7 @@ void draw()
   ON();
   Crosshair.drawCrosshair(mouseX, mouseY);
   shoot();
+  
   }
   if(status == 0)
   {
@@ -269,26 +369,3 @@ boolean checkKey(int k)
   }
   return false;
 }
-
- 
-class Bullet extends PVector 
-{
-  PVector vel;
- 
-  Bullet(PVector loc, PVector vel) {
-    super(loc.x, loc.y);
-    this.vel = vel.get();
-  }
- 
-  void update() {
-    add(vel);
-  }
- 
-  void display() {
-    fill(0, 0, 255);
-    ellipse(x, y, 3, 3);
-  }
- 
-  
-}
-   
