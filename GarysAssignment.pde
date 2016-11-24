@@ -116,7 +116,6 @@ void BackGround()
     text("Terminal 3 : Offline", 25, 480);
   }
   
-  
 }
 
 void switchs()
