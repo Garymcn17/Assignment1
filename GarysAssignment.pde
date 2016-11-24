@@ -17,7 +17,7 @@ float radius;
 float size = 40;
 int value = 0;
 int condition = 0;
-int counter = 0;
+int counter = 20;
 float x = 37.5;
 float y = 275;
 float t =0,p =0;
@@ -117,6 +117,10 @@ void BackGround()
   {
     text("Terminal 3 : Offline", 25, 480);
   }
+  
+  rect(635,495,200,40,5);
+  
+  
   
 }
 
@@ -313,15 +317,26 @@ void shoot()
   PVector mouse = new PVector(mouseX, mouseY);
   fill(0);
   ellipse(mouse.x, mouse.y, 5, 5);
- 
-  if (frameCount%5==0 && mousePressed) {
-    PVector dir = PVector.sub(mouse, player);
-    dir.normalize();
-    dir.mult(maxSpeed*3);
-    Bullet b = new Bullet(player, dir);
-    bullets.add(b);
-    pew.play();
-    counter ++;
+ if(counter > 0)
+ {
+   fill(0);
+   text ("Bullet Count : " + int(counter), 650, 520);
+    if (frameCount%5==0 && mousePressed) {
+      PVector dir = PVector.sub(mouse, player);
+      dir.normalize();
+      dir.mult(maxSpeed*3);
+      Bullet b = new Bullet(player, dir);
+      bullets.add(b);
+      pew.play();
+      counter --;
+      
+    }  
+  }
+  else
+  {
+    textSize(20);
+    fill(255,0,0);
+    text ("Out of bullets", 650, 520);
   }
  
   for (Bullet b : bullets) {
@@ -337,7 +352,6 @@ void draw()
   
   if(status == 1)
   {
-  
   BackGround();
   Loading1.Load();
   Move();
@@ -345,7 +359,6 @@ void draw()
   ON();
   Crosshair.drawCrosshair(mouseX, mouseY);
   shoot();
-  
   }
   if(status == 0)
   {

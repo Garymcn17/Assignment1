@@ -9,7 +9,7 @@ class Loading_Screen
     rect(0,0, width,height );
     Star();
      strokeWeight(10);
-      stroke(255);
+      stroke(255,0,0,100);
       line(0,40,width, 40);
       line(0,80,width, 80);
       line(0,120,width,120);
@@ -18,6 +18,14 @@ class Loading_Screen
       line(0,240,width,240);
       line(0,280,width,280);
       line(0,320,width,320);
+      line(0,360,width,360);
+      line(0,400,width,400);
+      line(0,440,width,440);
+      line(0,480,width,480);
+      line(0,520,width,520);
+      line(0,560,width,560);
+      line(0,600,width,600);
+      
     fill(#2FF5A0);
     rect(345,70, 400, 500,20);
     strokeWeight(1);
@@ -47,6 +55,7 @@ class Loading_Screen
        textSize(40);
        text("Press W for ship", 355,120);
        text("Press S to return", 355,220);
+       text("Press X to Exit", 355,320);
     }
     popMatrix();
   }
