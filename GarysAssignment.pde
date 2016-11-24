@@ -17,6 +17,7 @@ float radius;
 float size = 40;
 int value = 0;
 int condition = 0;
+int counter = 0;
 float x = 37.5;
 float y = 275;
 float t =0,p =0;
@@ -75,6 +76,7 @@ void BackGround()
   {
   text("Terminal 3", 855, 35);
   }
+  
  
   
   
@@ -319,6 +321,7 @@ void shoot()
     Bullet b = new Bullet(player, dir);
     bullets.add(b);
     pew.play();
+    counter ++;
   }
  
   for (Bullet b : bullets) {
