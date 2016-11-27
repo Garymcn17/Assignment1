@@ -1,0 +1,5 @@
+DIT	9.1	545	360	SuperduperAmzing
+Trinity	15.6	100	215	Meh
+DCU	11.2	900	500	Average
+UCD	14.0	135	670	artsy
+ITT	7.9	840	200	Decent

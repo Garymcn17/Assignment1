@@ -26,13 +26,17 @@ float z1 = 0;
 float b = 0;
 int sound = 0;
 int missileState =0;
+Table table;
 ArrayList <Bullet> bullets = new ArrayList <Bullet> ();
+ArrayList<Exit> Star_Array = new ArrayList<Exit>();
+Exit Star1;
 PVector player, playerSpeed;
 float maxSpeed = 3;
 
 void setup()
 {
   size(1090,720);
+  table = loadTable("stars.tsv");
   img = loadImage("maxresdefault.jpg");
   ps = new ParticleSystem(new PVector(width/2, 50));
   Crosshair = new CrossHair();
