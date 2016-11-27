@@ -48,7 +48,7 @@ void setup()
   pew = new SoundFile(this, "Pew_Pew-DKnight556-1379997159.wav");
   fart = new SoundFile(this, "fart-08.mp3");
   missile = new SoundFile(this, "Bomb-SoundBible.com-891110113.mp3");
-  //loadData();
+  loadData();
   noCursor();
   noStroke();
   smooth();
@@ -58,11 +58,11 @@ void loadData()
 {
   for(TableRow row : table.rows() )
   {
-     Load S = new Load(row.getString(1),
+     Load S = new Load(row.getString(0),
+                    (row.getFloat(1)),
                     (row.getFloat(2)),
                     (row.getFloat(3)),
-                    (row.getFloat(4)),
-                    (row.getString(5)));
+                    (row.getString(4)));
 
                     Star_Array.add(S);
   }
@@ -76,29 +76,23 @@ void loadData()
 
 void printStars()
 {
-  //float y = 0;
-  //float size = 0;
   for (int i = 0; i < Star_Array.size(); i++) 
   {
+    
     float x = (((Load) Star_Array.get(i)).X1);
     float y = (((Load) Star_Array.get(i)).Y1);
     float size = (((Load) Star_Array.get(i)).pop);
     String name = (((Load) Star_Array.get(i)).name);
     String desc = (((Load) Star_Array.get(i)).desc);
     
-    //Star s = Star_Array.get(i);
-     //x = map(s.Xg,-5, 5, 50, width -50);
-    // y = map(s.Yg,-5, 5, 50, height -50);
     fill(255);
     textSize(12);
-    text(name + desc, x , y + 10);
+    text(name +"   "+ desc, x , y + 40);
     
     fill(0);
     stroke(#E00732);
-    ellipse(x, y, size, size);
+    ellipse(x, y, size*3, size*3);
     stroke(#FCF103);
-    line(x , y, x + size, y);
-    line(x + size/2 , y -size/2, x + size/2, y +size/2);
     
   }
 
@@ -426,6 +420,7 @@ void draw()
   if(status == 2)
   {
    Exit1.Exit_Screen();
+    Crosshair.drawCrosshair(mouseX, mouseY);
   }
   
 }
