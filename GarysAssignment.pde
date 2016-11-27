@@ -4,7 +4,6 @@ SoundFile fart;
 SoundFile missile;
 ParticleSystem ps;
 PImage img;
-Exit exit1;
 CrossHair Crosshair;
 Scan Scan;
 Loading_Screen Loading1;
@@ -28,30 +27,52 @@ int sound = 0;
 int missileState =0;
 Table table;
 ArrayList <Bullet> bullets = new ArrayList <Bullet> ();
-ArrayList<Exit> Star_Array = new ArrayList<Exit>();
-Exit Star1;
+ArrayList<Exit1> Star_Array = new ArrayList<Exit1>();
 PVector player, playerSpeed;
 float maxSpeed = 3;
 
+Exit1 Exit1, Exit_Loading;
 void setup()
 {
   size(1090,720);
   table = loadTable("stars.tsv");
   img = loadImage("maxresdefault.jpg");
   ps = new ParticleSystem(new PVector(width/2, 50));
+  Exit_Loading = new Exit1();
   Crosshair = new CrossHair();
   Loading1 = new Loading_Screen();
-  exit1 = new Exit();
   player = new PVector(width/2, height/2 +145);
   playerSpeed = new PVector();
   Scan = new Scan();
   pew = new SoundFile(this, "Pew_Pew-DKnight556-1379997159.wav");
   fart = new SoundFile(this, "fart-08.mp3");
   missile = new SoundFile(this, "Bomb-SoundBible.com-891110113.mp3");
+  loadData();
   noCursor();
   noStroke();
   smooth();
 }
+
+void loadData()
+{
+  for(TableRow row : table.rows() )
+  {
+     Exit1 S = new Exit1(row.getString(2),
+                    (row.getFloat(12)),
+                    (row.getFloat(13)),
+                    (row.getFloat(14)),
+                    (row.getString(15)));
+
+                    Star_Array.add(S);
+  }
+  
+    for(Exit1 S: Star_Array)
+    {
+  
+      println(S);
+    }
+}
+
 
 void BackGround()
 {
@@ -373,7 +394,7 @@ void draw()
   
   if(status == 2)
   {
-   exit1.Exit_Screen();
+   Exit1.Exit_Screen();
   }
   
 }
