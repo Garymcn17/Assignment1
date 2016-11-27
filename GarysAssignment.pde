@@ -4,7 +4,7 @@ SoundFile fart;
 SoundFile missile;
 ParticleSystem ps;
 PImage img;
-
+Exit exit1;
 CrossHair Crosshair;
 Scan Scan;
 Loading_Screen Loading1;
@@ -37,6 +37,7 @@ void setup()
   ps = new ParticleSystem(new PVector(width/2, 50));
   Crosshair = new CrossHair();
   Loading1 = new Loading_Screen();
+  exit1 = new Exit();
   player = new PVector(width/2, height/2 +145);
   playerSpeed = new PVector();
   Scan = new Scan();
@@ -118,6 +119,7 @@ void BackGround()
     text("Terminal 3 : Offline", 25, 480);
   }
   
+  fill(#2FF5A0);
   rect(635,495,200,40,5);
   
   
@@ -365,10 +367,13 @@ void draw()
    Loading1.Loading();
   }
   
+  if(status == 2)
+  {
+   exit1.Exit_Screen();
+  }
+  
 }
 
-
- 
 void keyReleased()
 {
   keys[keyCode] = false; 

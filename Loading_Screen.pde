@@ -69,11 +69,18 @@ class Loading_Screen
           println("SpaceShip ");
         }
         
-         if( key == 's' || key == 'S')
+        if( key == 's' || key == 'S')
         {
           status = 0;
           println(" Menu ");
         }
+        
+        if( key == 'x' || key == 'X')
+        {
+          status = 2;
+          println("Exit");
+        }
+        
       }
     }
     
