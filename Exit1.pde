@@ -4,6 +4,8 @@ class Exit1{
   void Exit_Screen()
   {
     background(0);
+    fill( random(255));
+    Star();
     printStars();
     fill(255);
     textSize(25);

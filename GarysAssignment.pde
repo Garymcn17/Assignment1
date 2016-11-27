@@ -420,7 +420,7 @@ void draw()
   if(status == 2)
   {
    Exit1.Exit_Screen();
-    Crosshair.drawCrosshair(mouseX, mouseY);
+   Crosshair.drawCrosshair(mouseX, mouseY);
   }
   
 }
