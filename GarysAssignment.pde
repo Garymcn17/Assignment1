@@ -7,6 +7,7 @@ PImage img;
 CrossHair Crosshair;
 Scan Scan;
 Loading_Screen Loading1;
+Load Load; //data
 boolean[] keys = new boolean[1000];
 PShape s;
 float g = 0;
@@ -27,18 +28,18 @@ int sound = 0;
 int missileState =0;
 Table table;
 ArrayList <Bullet> bullets = new ArrayList <Bullet> ();
-ArrayList<Exit1> Star_Array = new ArrayList<Exit1>();
+ArrayList<Load> Star_Array = new ArrayList<Load>();
 PVector player, playerSpeed;
 float maxSpeed = 3;
 
-Exit1 Exit1, Exit_Loading;
+Exit1 Exit1;
 void setup()
 {
   size(1090,720);
   table = loadTable("stars.tsv");
   img = loadImage("maxresdefault.jpg");
   ps = new ParticleSystem(new PVector(width/2, 50));
-  Exit_Loading = new Exit1();
+  Exit1 = new Exit1();
   Crosshair = new CrossHair();
   Loading1 = new Loading_Screen();
   player = new PVector(width/2, height/2 +145);
@@ -47,7 +48,7 @@ void setup()
   pew = new SoundFile(this, "Pew_Pew-DKnight556-1379997159.wav");
   fart = new SoundFile(this, "fart-08.mp3");
   missile = new SoundFile(this, "Bomb-SoundBible.com-891110113.mp3");
-  loadData();
+  //loadData();
   noCursor();
   noStroke();
   smooth();
@@ -57,20 +58,50 @@ void loadData()
 {
   for(TableRow row : table.rows() )
   {
-     Exit1 S = new Exit1(row.getString(2),
-                    (row.getFloat(12)),
-                    (row.getFloat(13)),
-                    (row.getFloat(14)),
-                    (row.getString(15)));
+     Load S = new Load(row.getString(1),
+                    (row.getFloat(2)),
+                    (row.getFloat(3)),
+                    (row.getFloat(4)),
+                    (row.getString(5)));
 
                     Star_Array.add(S);
   }
   
-    for(Exit1 S: Star_Array)
+    for(Load S: Star_Array)
     {
   
       println(S);
     }
+}
+
+void printStars()
+{
+  //float y = 0;
+  //float size = 0;
+  for (int i = 0; i < Star_Array.size(); i++) 
+  {
+    float x = (((Load) Star_Array.get(i)).X1);
+    float y = (((Load) Star_Array.get(i)).Y1);
+    float size = (((Load) Star_Array.get(i)).pop);
+    String name = (((Load) Star_Array.get(i)).name);
+    String desc = (((Load) Star_Array.get(i)).desc);
+    
+    //Star s = Star_Array.get(i);
+     //x = map(s.Xg,-5, 5, 50, width -50);
+    // y = map(s.Yg,-5, 5, 50, height -50);
+    fill(255);
+    textSize(12);
+    text(name + desc, x , y + 10);
+    
+    fill(0);
+    stroke(#E00732);
+    ellipse(x, y, size, size);
+    stroke(#FCF103);
+    line(x , y, x + size, y);
+    line(x + size/2 , y -size/2, x + size/2, y +size/2);
+    
+  }
+
 }
 
 
