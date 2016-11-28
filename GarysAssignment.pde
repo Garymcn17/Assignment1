@@ -17,7 +17,7 @@ float radius;
 float size = 40;
 int value = 0;
 int condition = 0;
-int counter = 20;
+int counter = 60;
 float x = 37.5;
 float y = 275;
 float t =0,p =0;
@@ -29,8 +29,8 @@ int missileState =0;
 Table table;
 ArrayList <Bullet> bullets = new ArrayList <Bullet> ();
 ArrayList<Load> Star_Array = new ArrayList<Load>();
-PVector player, playerSpeed;
-float maxSpeed = 3;
+PVector player, playerSpeed; // For the bullets
+float maxSpeed = 3; // Speed of the bullets
 
 Exit1 Exit1;
 void setup()
@@ -89,13 +89,17 @@ void printStars()
     textSize(12);
     text(name +"   "+ desc, x , y + 40);
     
-    fill(0);
-    stroke(#E00732);
+    fill(#9C7ED1);
+    stroke(#181124);
     ellipse(x, y, size*3, size*3);
-    stroke(#FCF103);
+    
+    if (mouseX > 525 && mouseX < 565 && mouseY < 380 && mouseY > 340 && mousePressed == true)
+    {
+      exit();
+
+    }
     
   }
-
 }
 
 
@@ -272,7 +276,7 @@ void Star()
   {
     float x = random(1090);
     float y = random(720);
-    fill(#2BD2FA,random(255));
+    fill(#2BD2FA,random(255));    //Generating the random twinkling stars in the loading page and the exit page
     if (x < 50 && y < 50 )
     {
       for( int j = 0; j< 440 ; j++)
@@ -302,7 +306,7 @@ void Move()
    {
     if (keyCode == UP)
     {
-      x1 = x1 + 1; 
+      x1 = x1 + 1;  // This is controlling the switch on the hud
       y2 = y2 - 1;
     }
     if (keyCode == DOWN)
@@ -314,11 +318,10 @@ void Move()
    
   }
   
-  //triangle(0,height, x1,y2, x1, height);
   fill(#2FF5A0);
-  if (mouseX > 900 && mouseX < 1000 && mouseY > 400 && mouseY < 450)
-  {
-    stroke(255,0,0);
+  if (mouseX > 900 && mouseX < 1000 && mouseY > 400 && mouseY < 450) 
+  {                
+    stroke(255,0,0);            // Highlighting the box as a user passes over it 
     textSize(20);
     text("Left Click to shoot", width/2, height-75);
   }
@@ -354,27 +357,25 @@ void Move()
   fill(0);
   textSize(20);
   text("Gun", 930,430);
-  text("Fart", 930,485);
+  text("Fart", 930,485); //displaying text 
   text("Missile", 930,540);
 }
 
 void shoot()
 {
-  player.add(playerSpeed);
   fill(255, 0, 0);
   ellipse(player.x, player.y, 20, 20);
   fill(255);
   ellipse(player.x, player.y, 10, 10);
  
   PVector mouse = new PVector(mouseX, mouseY);
-  fill(0);
-  ellipse(mouse.x, mouse.y, 5, 5);
  if(counter > 0)
  {
    fill(0);
    text ("Bullet Count : " + int(counter), 650, 520);
-    if (frameCount%5==0 && mousePressed) {
-      PVector dir = PVector.sub(mouse, player);
+    if (frameCount% 12 ==0 && mousePressed) 
+    {
+      PVector dir = PVector.sub(mouse,player);
       dir.normalize();
       dir.mult(maxSpeed*3);
       Bullet b = new Bullet(player, dir);

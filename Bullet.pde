@@ -2,7 +2,8 @@ class Bullet extends PVector
 {
   PVector vel;
  
-  Bullet(PVector loc, PVector vel) {
+  Bullet(PVector loc, PVector vel) 
+  {
     super(loc.x, loc.y);
     this.vel = vel.get();
   }

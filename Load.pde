@@ -6,7 +6,7 @@ class Load{
   float Y1;
   String desc;
   
-   Load(String name, float pop, float X1, float Y1, String desc)
+   Load(String name, float pop, float X1, float Y1, String desc) // constructor for reading in the data
   {
     this.name = name;
     this.pop = pop;
@@ -16,9 +16,9 @@ class Load{
   }
   
   
-  String toString()
+  String toString() // Formatting the output of the text
   {
-      return  name 
+      return  name  
                  + "\t" + pop
                  + "\t" + X
                  + "\t" + Y 

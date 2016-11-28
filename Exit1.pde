@@ -5,6 +5,7 @@ class Exit1{
   {
     background(0);
     fill( random(255));
+    stroke(random(255),random(255),0,random(100));  // Priinting the exit screen 
     Star();
     printStars();
     fill(255);

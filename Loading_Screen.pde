@@ -8,7 +8,7 @@ class Loading_Screen
     fill(0);
     rect(0,0, width,height );
     Star();
-     strokeWeight(10);
+     strokeWeight(10);            //Printing lines in the loading screen
       stroke(255,0,0,100);
       line(0,40,width, 40);
       line(0,80,width, 80);
@@ -30,22 +30,19 @@ class Loading_Screen
     rect(345,70, 400, 500,20);
     strokeWeight(1);
     
-     
-      
-    
     pushMatrix();
     noStroke();
-    fill(255);
+    fill(255,0,0);
     textAlign(LEFT);
     textSize(20);
     rect(10, 680, 205, 24);
-    fill(255,0,0);
+    fill(255);
     
     rect(215, 680, fillX-200, 24);
     if(fillX < 202)
     {
       fillX = fillX + .5;
-      text ("LOADING " + int((frameCount%401) / 4) + "%", 10, 670);
+      text ("LOADING " + int(p++) /4 + "%", 10, 670); //Doing the loading percentage on the loading screen
     }
     else
     {
