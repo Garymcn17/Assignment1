@@ -33,6 +33,8 @@ PVector player, playerSpeed; // For the bullets
 float maxSpeed = 3; // Speed of the bullets
 
 Exit1 Exit1;
+
+//Loading images, mps and creating instances of the classes
 void setup()
 {
   size(1090,720);
@@ -54,6 +56,7 @@ void setup()
   smooth();
 }
 
+//Loading data from a tvs file
 void loadData()
 {
   for(TableRow row : table.rows() )
@@ -74,6 +77,7 @@ void loadData()
     }
 }
 
+// Function to print some stars with names and sizes calculated with a scaler
 void printStars()
 {
   for (int i = 0; i < Star_Array.size(); i++) 
@@ -102,7 +106,7 @@ void printStars()
   }
 }
 
-
+//Drawing my backgound shapes 
 void BackGround()
 {
   
@@ -179,7 +183,7 @@ void BackGround()
   
   
 }
-
+//Drawing the switch on the left of the screen
 void switchs()
 {
   fill(#2FF5A0);
@@ -188,6 +192,7 @@ void switchs()
   rect(37.5,150, 75, 200);
 }
 
+//Used to check the state of the switch and send a signal to display the correct text
 void ON()
 {
   if(keyPressed)
@@ -218,7 +223,7 @@ void ON()
     }
    }
    
-  if(key == 'f')
+  if(key == 'f')    //Playing sounds based on conditions
   {
     sound = 1;
   }
@@ -242,7 +247,7 @@ void ON()
     missileState = 0;
   }
   
-  if(key == ' ')
+  if(key == ' ') // If space is help it draws the missile on the screen
   {
     
     if (z < 250)
@@ -258,7 +263,7 @@ void ON()
       else
       {
          ps.addParticle();
-         ps.run();
+         ps.running();
          missile.play();
       }
     }
@@ -375,11 +380,11 @@ void shoot()
    text ("Bullet Count : " + int(counter), 650, 520);
     if (frameCount% 12 ==0 && mousePressed) 
     {
-      PVector dir = PVector.sub(mouse,player);
-      dir.normalize();
-      dir.mult(maxSpeed*3);
-      Bullet b = new Bullet(player, dir);
-      bullets.add(b);
+      PVector direction = PVector.sub(mouse,player);
+      direction.normalize();
+      direction.mult(maxSpeed*3);
+      Bullet B = new Bullet(player, direction);
+      bullets.add(B);
       pew.play();
       counter --;
       

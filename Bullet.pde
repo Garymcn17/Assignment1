@@ -1,15 +1,15 @@
 class Bullet extends PVector 
 {
-  PVector vel;
+  PVector velocity;
  
-  Bullet(PVector loc, PVector vel) 
+  Bullet(PVector pos, PVector velocity) 
   {
-    super(loc.x, loc.y);
-    this.vel = vel.get();
+    super(pos.x, pos.y);
+    this.velocity = velocity.get();
   }
  
   void update() {
-    add(vel);
+    add(velocity);
   }
  
   void display() {

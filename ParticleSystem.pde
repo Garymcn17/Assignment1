@@ -11,11 +11,11 @@ class ParticleSystem {
     particles.add(new Particle(origin));
   }
 
-  void run() {
+  void running() {
     for (int i = particles.size()-1; i >= 0; i--) {
       Particle p = particles.get(i);
-      p.run();
-      if (p.isDead()) {
+      p.running();
+      if (p.alive()) {
         particles.remove(i);
       }
     }
