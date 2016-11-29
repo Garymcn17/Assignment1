@@ -22,5 +22,7 @@ Page 3: This is a page that just terminates the program. It displays a couple of
 
 NB. The descriptions on the exit screen are merely a joke :)
 
+#Click the picture to watch the video
+
 [![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/m2pE_lSed-w/0.jpg)](https://www.youtube.com/watch?v=m2pE_lSed-w)
 
