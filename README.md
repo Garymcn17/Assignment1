@@ -11,3 +11,14 @@ Page 2: This is the main page in my project. On this page I have multiple shapes
 Page 3: This is a page that just terminates the program. It displays a couple of planets that have been read in from a tsv file using loadTable and putting the information from this file into an arraylist and then accessing this and printing them to the screen. This reuses the stars() function to display the stars. If the user clicks on the planet named DIT it closes the program. 
 
 ![Alt text](https://github.com/Garymcn17/Assignment1/blob/master/page3.png)
+
+#Points of interest
+
+1.The way in which my bullets are fired.
+2.How the pasticles display when the missile explodes.
+3.How I made my own tsv file and read it into the program.(Not very difficult but I enjoyed this)
+4.How the program teminates if you click on DIT in the final screen.
+5.My program incorporates multiple ways of user interaction.
+
+NB. The descriptions on the exit screen are merely a joke :)
+
